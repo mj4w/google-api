@@ -64,18 +64,3 @@ for folder in folders:
 
     share_with_user(service, folder_id, account_email)
 
-"""
-Create file in each folder
-"""
-for folder_name, folder_id in folder_ids.items():
-    file_metadata = {
-        'name': 'example.txt',
-        'parents': [folder_id]
-    }
-    media = MediaFileUpload('example.txt', mimetype='text/plain')
-    
-    file = service.files().create(body=file_metadata, media_body=media, fields='id').execute()
-    file_id = file.get('id')
-    print(f'Created file example.txt in folder {folder_name} with ID {file_id}')
-
-    share_with_user(service, file_id, account_email)
